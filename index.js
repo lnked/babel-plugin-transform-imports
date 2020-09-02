@@ -40,7 +40,7 @@ function barf(msg) {
   throw new Error('babel-plugin-transform-imports: ' + msg);
 }
 
-function transform(filename, transformOption, importName, matches) {
+function transform(transformOption, filename, importName, matches) {
   if (typeof transformOption === 'function') {
     return transformOption(filename, importName, matches);
   }
@@ -114,7 +114,7 @@ module.exports = function () {
 
             var importName = memberImport.imported.name;
 
-            var replace = transform(filename, opts.transform, opts.transform, importName, matches);
+            var replace = transform(opts.transform, filename, importName, matches);
 
             var newImportSpecifier = (opts.skipDefaultConversion)
               ? memberImport
